@@ -1,0 +1,55 @@
+<div class="container" >
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Data Driven Form</h3>
+      </div>
+      <div class="panel-body">
+        <form
+          [formGroup]="frmUser"
+          autocomplete="false" novalidate
+          (ngSubmit)="onsubmitForm()"
+        >
+          <div class="form-group">
+            <label for="">Username</label>
+            <input type="text" class="form-control"
+                   name="txtUsername"
+                   formControlName="username"
+            >
+            <span class="label label-danger" *ngIf="frmUser.controls.username.dirty && frmUser.controls.username.errors?.required">
+              vui long nhap username
+            </span>
+            <span class="label label-danger" *ngIf="frmUser.controls.username.dirty && frmUser.controls.username.errors?.minlength">
+              username phai tren 3 ki tu
+            </span>
+            <span class="label label-danger" *ngIf="frmUser.controls.username.dirty && frmUser.controls.username.errors?.maxlength">
+              username chi duoc duoi 30 ki tu
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" class="form-control"
+                   name="txtPassword"
+                   formControlName="password"
+            >
+            <span class="label label-danger" *ngIf="frmUser.controls.password.dirty && frmUser.controls.password.errors?.required">
+              vui long nhap vao password
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="">Email</label>
+            <input type="text" class="form-control"
+                   name="txtEmail"
+                   formControlName="email"
+            >
+            <span class="label label-danger" *ngIf="frmUser.controls.email.dirty && frmUser.controls.email.errors?.pattern">
+              vui long nhap email dung dinh dang vidu: chinhcomhut@gmail.com
+            </span>
+          </div>
+          <button [disabled]="frmUser.invalid" type="submit" class="btn btn-success">Save</button>
+          <button (click)="onResetForm()" type="button" class="btn btn-danger">Reset</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
